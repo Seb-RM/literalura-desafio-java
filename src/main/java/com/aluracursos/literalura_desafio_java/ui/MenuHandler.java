@@ -7,7 +7,7 @@ public class MenuHandler {
     private final Scanner scanner = new Scanner(System.in);
 
     public int solicitarOpcion() {
-        System.out.print("Seleccione una opción: ");
+        System.out.print("\nSeleccione una opción: ");
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
@@ -17,12 +17,12 @@ public class MenuHandler {
     }
 
     public String solicitarTitulo() {
-        System.out.print("Ingrese el título del libro: ");
+        System.out.print("\nIngrese el título del libro: ");
         return scanner.nextLine();
     }
 
     public String solicitarAutor() {
-        System.out.print("Ingrese el nombre del autor: ");
+        System.out.print("\nIngrese el nombre del autor: ");
         return scanner.nextLine();
     }
 
