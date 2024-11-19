@@ -40,4 +40,15 @@ public class RespuestaApi {
     public void setResults(List<Libro> results) {
         this.results = results;
     }
+
+    @Override
+    public String toString() {
+        return "RespuestaApi{" + '\n' +
+                "count=" + count + "," + '\n' +
+                "next='" + next + "," + '\n' +
+                "previous='" + previous + "," + '\n' +
+                "results= " + results + "," + '\n' +
+                '}';
+    }
+
 }

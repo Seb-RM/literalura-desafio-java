@@ -34,4 +34,14 @@ public class Autor {
     public void setFechaFallecimiento(int fechaFallecimiento) {
         this.fechaFallecimiento = fechaFallecimiento;
     }
+
+    @Override
+    public String toString() {
+        return "Autor{" + '\n' +
+                "Nombre= " + nombre + "," + '\n' +
+                "Año de Nacimiento= " + fechaNacimiento + "," +'\n' +
+                "Año de Fallecimiento= " + fechaFallecimiento + "," + '\n' +
+                '}';
+    }
+
 }

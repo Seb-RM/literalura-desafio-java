@@ -1,9 +1,11 @@
 package com.aluracursos.literalura_desafio_java.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Libro {
 
     private int id;
@@ -16,7 +18,7 @@ public class Libro {
     @JsonProperty("languages")
     private List<String> idiomas;
     @JsonProperty("download_count")
-    private List<String> numeroDescargas;
+    private int numeroDescargas;
 
     public int getId() {
         return id;
@@ -58,11 +60,23 @@ public class Libro {
         this.idiomas = idiomas;
     }
 
-    public List<String> getNumeroDescargas() {
+    public int getNumeroDescargas() {
         return numeroDescargas;
     }
 
-    public void setNumeroDescargas(List<String> numeroDescargas) {
+    public void setNumeroDescargas(int numeroDescargas) {
         this.numeroDescargas = numeroDescargas;
     }
+
+    @Override
+    public String toString() {
+        return "Libro{" + '\n' +
+                "Id= " + id + "," +'\n' +
+                "Título= " + titulo + "," + '\n' +
+                "Autores= " + autores + "," + '\n' +
+                "Temáticas= " + tematicas + "," + '\n' +
+                "Número de Descargas= " + numeroDescargas + "," + '\n' +
+                '}';
+    }
+
 }
