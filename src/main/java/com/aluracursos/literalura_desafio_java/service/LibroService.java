@@ -6,6 +6,7 @@ import com.aluracursos.literalura_desafio_java.model.RespuestaApi;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,13 +53,19 @@ public class LibroService {
     }
 
 
-    public List<String> mostrarLibrosPopulares() {
-        // Lógica para obtener libros populares
-        return List.of("Libro Popular 1", "Libro Popular 2");
-    }
-
-    public List<String> buscarLibrosPorAutor(String autor) {
-        // Lógica para buscar libros por autor
-        return List.of("Libro del Autor 1", "Libro del Autor 2");
-    }
+//    public List<String> mostrarLibrosPopulares() {
+//        // Lógica para obtener libros populares
+//        return Arrays.asList("Libro 1", "Libro 2", "Libro 3");
+//    }
+//
+//    public List<String> buscarLibrosPorAutor(String autor) {
+//        List<Libro> librosPorAutor = libroService.buscarLibrosPorAutor(autor); // Devuelve una lista de libros
+//        if (librosPorAutor.isEmpty()) {
+//            return "No se encontraron libros para el autor: " + autor;
+//        }
+//        return "Resultados para el autor " + autor + ":\n" +
+//                librosPorAutor.stream()
+//                        .map(Libro::toString) // Convierte cada libro a su representación textual
+//                        .collect(Collectors.joining("\n"));
+//    }
 }

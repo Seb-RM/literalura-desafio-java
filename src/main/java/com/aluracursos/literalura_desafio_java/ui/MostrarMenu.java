@@ -1,5 +1,6 @@
 package com.aluracursos.literalura_desafio_java.ui;
 
+import com.aluracursos.literalura_desafio_java.controller.LibroController;
 import com.aluracursos.literalura_desafio_java.service.LibroService;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ public class MostrarMenu {
 
     private final MenuHandler menuHandler;
     private final LibroService libroService;
+    private final LibroController libroController;
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -20,9 +22,10 @@ public class MostrarMenu {
     final String FONDO_WHITE = "\033[107m";
     final String FONDO_RED = "\033[41m";
 
-    public MostrarMenu(MenuHandler menuHandler, LibroService libroService) {
+    public MostrarMenu(MenuHandler menuHandler, LibroService libroService, LibroController libroController) {
         this.menuHandler = menuHandler;
         this.libroService = libroService;
+        this.libroController = libroController;
     }
 
     public void mostrarMenu() {
@@ -37,9 +40,11 @@ public class MostrarMenu {
 
                     switch (opcion) {
                         case 1 -> manejarBusquedaPorTitulo();
-                        case 2 -> manejarLibrosPopulares();
-                        case 3 -> manejarBusquedaPorAutor();
-                        case 4 -> {
+//                        case 2 -> manejarLibrosPopulares();
+//                        case 3 -> manejarBusquedaPorAutor();
+                        case 4 -> manejarListarTodosLosLibros();
+                        case 5 -> manejarFiltrarLibrosPorIdioma();
+                        case 6 -> {
                             menuHandler.cerrarScanner();
                             mostrarMensajeDespedida();
                             salir = true;
@@ -61,23 +66,34 @@ public class MostrarMenu {
         System.out.println("1️⃣ Buscar libros por título");
         System.out.println("2️⃣ Mostrar los libros más populares");
         System.out.println("3️⃣ Buscar libros por autor");
-        System.out.println("4️⃣ Salir");
+        System.out.println("4️⃣ Listar todos los libros");
+        System.out.println("5️⃣ Filtrar libros por idioma");
+        System.out.println("6️⃣ Salir");
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
     }
 
     private void manejarBusquedaPorTitulo() {
         String titulo = menuHandler.solicitarTitulo();
-        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorTitulo(titulo));
+        String resultado = libroController.buscarLibroPorTitulo(titulo);
+        menuHandler.mostrarMensaje("\nResultado: " + resultado);
     }
 
-    private void manejarLibrosPopulares() {
-        menuHandler.mostrarMensaje("\nPopulares: " + libroService.mostrarLibrosPopulares());
+    private void manejarListarTodosLosLibros() {
+        menuHandler.mostrarMensaje(libroController.listarTodosLosLibros());
     }
 
-    private void manejarBusquedaPorAutor() {
-        String autor = menuHandler.solicitarAutor();
-        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorAutor(autor));
+    private void manejarFiltrarLibrosPorIdioma() {
+        String idioma = menuHandler.solicitarIdioma();
+        menuHandler.mostrarMensaje(libroController.filtrarLibrosPorIdioma(idioma));
     }
+//    private void manejarLibrosPopulares() {
+//        menuHandler.mostrarMensaje("\nPopulares: " + libroService.mostrarLibrosPopulares());
+//    }
+//
+//    private void manejarBusquedaPorAutor() {
+//        String autor = menuHandler.solicitarAutor();
+//        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorAutor(autor));
+//    }
 
     private void mostrarMensajeDespedida() {
         System.out.println(ANSI_GREEN + "\n=======================================");

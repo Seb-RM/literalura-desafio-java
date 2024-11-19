@@ -7,9 +7,9 @@ public class Autor {
     @JsonProperty("name")
     private String nombre;
     @JsonProperty("birth_year")
-    private int fechaNacimiento;
+    private Integer fechaNacimiento;
     @JsonProperty("death_year")
-    private int fechaFallecimiento;
+    private Integer fechaFallecimiento;
 
     public String getNombre() {
         return nombre;
@@ -37,11 +37,15 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor{" + '\n' +
-                "Nombre= " + nombre + "," + '\n' +
-                "Año de Nacimiento= " + fechaNacimiento + "," +'\n' +
-                "Año de Fallecimiento= " + fechaFallecimiento + "," + '\n' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("👤 Nombre: ").append(nombre).append('\n');
+        sb.append("   🗓️ Año de Nacimiento: ").append(fechaNacimiento).append('\n');
+        if (fechaFallecimiento != null) {
+            sb.append("   🕊️ Año de Fallecimiento: ").append(fechaFallecimiento).append('\n');
+        } else {
+            sb.append("   🟢 Aún con vida").append('\n');
+        }
+        return sb.toString();
     }
 
 }

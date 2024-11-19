@@ -42,6 +42,11 @@ public class MenuHandler {
         return leerEntrada();
     }
 
+    public String solicitarIdioma() {
+        System.out.print("\nIngrese el idioma deseado: ");
+        return leerEntrada();
+    }
+
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
