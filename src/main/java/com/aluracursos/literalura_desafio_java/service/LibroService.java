@@ -1,7 +1,10 @@
 package com.aluracursos.literalura_desafio_java.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class LibroService {
 
     public List<String> buscarLibrosPorTitulo(String titulo) {

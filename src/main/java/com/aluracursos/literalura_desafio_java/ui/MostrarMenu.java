@@ -1,13 +1,13 @@
 package com.aluracursos.literalura_desafio_java.ui;
 
 import com.aluracursos.literalura_desafio_java.service.LibroService;
+import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
-
+@Component
 public class MostrarMenu {
 
-    private final MenuHandler menuHandler = new MenuHandler();
-    private final LibroService libroService = new LibroService();
+    private final MenuHandler menuHandler;
+    private final LibroService libroService;
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -20,43 +20,29 @@ public class MostrarMenu {
     final String FONDO_WHITE = "\033[107m";
     final String FONDO_RED = "\033[41m";
 
+    public MostrarMenu(MenuHandler menuHandler, LibroService libroService) {
+        this.menuHandler = menuHandler;
+        this.libroService = libroService;
+    }
+
     public void mostrarMenu() {
-        Scanner scanner = new Scanner(System.in);
         boolean salir = false;
 
             while (!salir) {
-                System.out.println(ANSI_GREEN + "\n=======================================");
-                System.out.println(FONDO_WHITE+" \uD83D\uDCDA Bienvenido al sistema de consulta: " + RESET_FONDO);
-                System.out.println(ANSI_GREEN + "=======================================" + ANSI_RESET);
-                System.out.println("Seleccione una opción del menú:");
-                System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
-                System.out.println("1\uFE0F⃣ Buscar libros por título");
-                System.out.println("2\uFE0F⃣ Mostrar los libros más populares");
-                System.out.println("3\uFE0F⃣ Buscar libros por autor");
-                System.out.println("4\uFE0F⃣ Salir");
-                System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
+
+                mostrarOpcionesMenu();
 
                 try {
                     int opcion = menuHandler.solicitarOpcion();
 
                     switch (opcion) {
-                        case 1 -> {
-                            String titulo = menuHandler.solicitarTitulo();
-                            menuHandler.mostrarMensaje("Resultados: " + libroService.buscarLibrosPorTitulo(titulo));
-                        }
-                        case 2 -> menuHandler.mostrarMensaje("Populares: " + libroService.mostrarLibrosPopulares());
-                        case 3 -> {
-                            String autor = menuHandler.solicitarAutor();
-                            menuHandler.mostrarMensaje("Resultados: " + libroService.buscarLibrosPorAutor(autor));
-                        }
+                        case 1 -> manejarBusquedaPorTitulo();
+                        case 2 -> manejarLibrosPopulares();
+                        case 3 -> manejarBusquedaPorAutor();
                         case 4 -> {
-                            System.out.println(ANSI_GREEN + "\n=======================================");
-                            menuHandler.mostrarMensaje(FONDO_WHITE +"     ¡Gracias por usar el sistema!     " +ANSI_RESET);
-                            System.out.println(ANSI_GREEN+ "=======================================" + ANSI_RESET);
-                            System.out.println(ANSI_YELLOW + "\nCerrando la aplicación...");
                             menuHandler.cerrarScanner();
+                            mostrarMensajeDespedida();
                             salir = true;
-
                         }
                         default -> menuHandler.mostrarMensaje ("⚠\uFE0F Opción no válida. Intente de nuevo.");
                     }
@@ -64,6 +50,40 @@ public class MostrarMenu {
                     System.out.println("Error: Debe ingresar un número. Intente de nuevo.");
                 }
         }
-            scanner.close();
     }
+
+    private void mostrarOpcionesMenu() {
+        System.out.println(ANSI_GREEN + "\n=======================================");
+        System.out.println(FONDO_WHITE + " 📚 Bienvenido al sistema de consulta: " + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "=======================================" + ANSI_RESET);
+        System.out.println("Seleccione una opción del menú:");
+        System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
+        System.out.println("1️⃣ Buscar libros por título");
+        System.out.println("2️⃣ Mostrar los libros más populares");
+        System.out.println("3️⃣ Buscar libros por autor");
+        System.out.println("4️⃣ Salir");
+        System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
+    }
+
+    private void manejarBusquedaPorTitulo() {
+        String titulo = menuHandler.solicitarTitulo();
+        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorTitulo(titulo));
+    }
+
+    private void manejarLibrosPopulares() {
+        menuHandler.mostrarMensaje("\nPopulares: " + libroService.mostrarLibrosPopulares());
+    }
+
+    private void manejarBusquedaPorAutor() {
+        String autor = menuHandler.solicitarAutor();
+        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorAutor(autor));
+    }
+
+    private void mostrarMensajeDespedida() {
+        System.out.println(ANSI_GREEN + "\n=======================================");
+        System.out.println(FONDO_WHITE + "     ¡Gracias por usar el sistema!     " + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "=======================================" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "\nCerrando la aplicación..." + ANSI_RESET);
+    }
+
 }
