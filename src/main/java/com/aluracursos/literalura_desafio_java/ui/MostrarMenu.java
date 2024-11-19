@@ -5,6 +5,7 @@ import com.aluracursos.literalura_desafio_java.service.LibroService;
 import java.util.Scanner;
 
 public class MostrarMenu {
+
     private final MenuHandler menuHandler = new MenuHandler();
     private final LibroService libroService = new LibroService();
 
@@ -17,7 +18,7 @@ public class MostrarMenu {
 
     final String RESET_FONDO = "\033[0m";
     final String FONDO_WHITE = "\033[107m";
-
+    final String FONDO_RED = "\033[41m";
 
     public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -55,8 +56,9 @@ public class MostrarMenu {
                             System.out.println(ANSI_YELLOW + "\nCerrando la aplicación...");
                             menuHandler.cerrarScanner();
                             salir = true;
+
                         }
-                        default -> menuHandler.mostrarMensaje(ANSI_YELLOW + "⚠\uFE0F Opción no válida. Intente de nuevo.");
+                        default -> menuHandler.mostrarMensaje ("⚠\uFE0F Opción no válida. Intente de nuevo.");
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Error: Debe ingresar un número. Intente de nuevo.");
