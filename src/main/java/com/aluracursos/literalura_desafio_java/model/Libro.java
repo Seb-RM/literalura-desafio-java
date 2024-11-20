@@ -77,6 +77,12 @@ public class Libro {
         autores.forEach(autor -> sb.append("    ").append(autor).append('\n')); // Reutiliza el `toString` de Autor
         sb.append("📚 Temáticas:\n");
         tematicas.forEach(tematica -> sb.append("    - ").append(tematica).append('\n'));
+        sb.append("🌍 Idiomas:\n");
+        if (idiomas.isEmpty()) {
+            sb.append("    No se especificaron idiomas.\n");
+        } else {
+            idiomas.forEach(idioma -> sb.append("    - ").append(idioma).append('\n'));
+        }
         sb.append("🔢 Número de Descargas: ").append(numeroDescargas).append('\n');
         return sb.toString();
     }

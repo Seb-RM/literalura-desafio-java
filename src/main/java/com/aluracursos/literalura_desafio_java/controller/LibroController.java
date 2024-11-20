@@ -17,7 +17,7 @@ public class LibroController {
     }
 
     public String buscarLibroPorTitulo(String titulo) {
-        Libro libro = libroService.buscarLibroPorTitulo(titulo); // Recibe un objeto Libro
+        Libro libro = libroService.buscarLibroPorTitulo(titulo);
         return libro != null ? libro.toString() : "No se encontró el libro con título: " + titulo;
     }
 
