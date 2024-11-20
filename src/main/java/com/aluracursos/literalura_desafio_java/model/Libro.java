@@ -14,6 +14,7 @@ public class Libro {
     private String titulo;
     @JsonProperty("authors")
     private List<Autor> autores;
+    private Autor autor;
     @JsonProperty("subjects")
     private List<String> tematicas;
     @JsonProperty("languages")
@@ -45,6 +46,14 @@ public class Libro {
         this.autores = autores;
     }
 
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
     public List<String> getTematicas() {
         return tematicas;
     }
@@ -69,12 +78,21 @@ public class Libro {
         this.numeroDescargas = numeroDescargas;
     }
 
+    public void setAutoresJson(List<Autor> autoresJson) {
+        this.autores = autoresJson; // Campo temporal por si es necesario
+        this.autor = (autoresJson != null && !autoresJson.isEmpty()) ? autoresJson.get(0) : null;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n📖 Título: ").append(titulo).append('\n');
-        sb.append("👨‍💼 Autor(es):\n");
-        autores.forEach(autor -> sb.append("    ").append(autor).append('\n')); // Reutiliza el `toString` de Autor
+        sb.append("👨‍💼 Autor: ");
+        if (autor != null) {
+            sb.append(autor).append('\n');
+        } else {
+            sb.append("Autor desconocido.\n");
+        }
         sb.append("📚 Temáticas:\n");
         tematicas.forEach(tematica -> sb.append("    - ").append(tematica).append('\n'));
         sb.append("🌍 Idiomas:\n");

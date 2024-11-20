@@ -37,9 +37,9 @@ public class MostrarMenu {
                     int opcion = menuHandler.solicitarOpcion();
 
                     switch (opcion) {
-                        case 1 -> manejarBusquedaPorTitulo();
+                        case 1 -> manejarBusqueda();
 //                        case 2 -> manejarLibrosPopulares();
-//                        case 3 -> manejarBusquedaPorAutor();
+                        case 3 -> manejarListarTodosLosAutores();
                         case 4 -> manejarListarTodosLosLibros();
                         case 5 -> manejarFiltrarLibrosPorIdioma();
                         case 6 -> {
@@ -63,16 +63,16 @@ public class MostrarMenu {
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
         System.out.println("1️⃣ Buscar libros por título");
         System.out.println("2️⃣ Mostrar los libros más populares");
-        System.out.println("3️⃣ Buscar libros por autor");
-        System.out.println("4️⃣ Listar todos los libros");
-        System.out.println("5️⃣ Filtrar libros por idioma");
+        System.out.println("3️⃣ Filtrar libros por autores buscados");
+        System.out.println("4️⃣ Listar todos los libros buscados");
+        System.out.println("5️⃣ Filtrar libros buscados por idioma");
         System.out.println("6️⃣ Salir");
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
     }
 
-    private void manejarBusquedaPorTitulo() {
-        String titulo = menuHandler.solicitarTitulo();
-        String resultado = libroController.buscarLibroPorTitulo(titulo);
+    private void manejarBusqueda() {
+        String query = menuHandler.solicitarQuery();
+        String resultado = libroController.buscarLibros(query);
         menuHandler.mostrarMensaje("\nResultado: " + resultado);
     }
 
@@ -80,18 +80,14 @@ public class MostrarMenu {
         menuHandler.mostrarMensaje(libroController.listarTodosLosLibros());
     }
 
+    private void manejarListarTodosLosAutores() {
+        menuHandler.mostrarMensaje(libroController.listarTodosLosAutores());
+    }
+
     private void manejarFiltrarLibrosPorIdioma() {
         String idioma = menuHandler.solicitarIdioma();
         menuHandler.mostrarMensaje(libroController.filtrarLibrosPorIdioma(idioma));
     }
-//    private void manejarLibrosPopulares() {
-//        menuHandler.mostrarMensaje("\nPopulares: " + libroService.mostrarLibrosPopulares());
-//    }
-//
-//    private void manejarBusquedaPorAutor() {
-//        String autor = menuHandler.solicitarAutor();
-//        menuHandler.mostrarMensaje("\nResultados: " + libroService.buscarLibrosPorAutor(autor));
-//    }
 
     private void mostrarMensajeDespedida() {
         System.out.println(ANSI_GREEN + "\n=======================================");

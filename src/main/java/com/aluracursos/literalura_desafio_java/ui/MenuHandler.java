@@ -32,13 +32,8 @@ public class MenuHandler {
 
     }
 
-    public String solicitarTitulo() {
-        System.out.print("\nIngrese el título del libro: ");
-        return leerEntrada();
-    }
-
-    public String solicitarAutor() {
-        System.out.print("\nIngrese el nombre del autor: ");
+    public String solicitarQuery() {
+        System.out.print("\nIngrese el título del libro o el autor: ");
         return leerEntrada();
     }
 
