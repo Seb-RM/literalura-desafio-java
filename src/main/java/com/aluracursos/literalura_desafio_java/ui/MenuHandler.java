@@ -19,7 +19,7 @@ public class MenuHandler {
             System.out.print("\nSeleccione una opción: ");
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
-                if (opcion >= 1 && opcion <= 4) {
+                if (opcion >= 1 && opcion <= 6) {
                     return opcion;
                 } else {
                     System.out.println("⚠️ Opción fuera de rango. Por favor, ingrese un número entre 1 y 4.");

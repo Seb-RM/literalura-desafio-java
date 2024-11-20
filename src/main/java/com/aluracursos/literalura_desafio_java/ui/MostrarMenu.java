@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class MostrarMenu {
 
     private final MenuHandler menuHandler;
-    private final LibroService libroService;
     private final LibroController libroController;
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -22,9 +21,8 @@ public class MostrarMenu {
     final String FONDO_WHITE = "\033[107m";
     final String FONDO_RED = "\033[41m";
 
-    public MostrarMenu(MenuHandler menuHandler, LibroService libroService, LibroController libroController) {
+    public MostrarMenu(MenuHandler menuHandler, LibroController libroController) {
         this.menuHandler = menuHandler;
-        this.libroService = libroService;
         this.libroController = libroController;
     }
 
