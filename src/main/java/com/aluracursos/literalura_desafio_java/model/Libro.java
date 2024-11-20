@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Libro {
@@ -98,8 +99,21 @@ public class Libro {
         } else {
             idiomas.forEach(idioma -> sb.append("    - ").append(idioma).append('\n'));
         }
-        sb.append("🔢 Número de Descargas: ").append(numeroDescargas).append('\n');
+        sb.append("🔢 Número de Descargas: ").append(numeroDescargas);
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Libro libro = (Libro) o;
+        return Objects.equals(titulo, libro.titulo) &&
+                Objects.equals(autores, libro.autores);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, autores);
+    }
 }

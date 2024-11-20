@@ -35,8 +35,12 @@ public class LibroService {
 
         Libro libro = respuestaApi.getResults().get(0);
 
-        catalogoLibros.add(libro);
+        boolean libroExistente = catalogoLibros.stream()
+                .anyMatch(l -> l.getTitulo().equals(libro.getTitulo()));
 
+        if (!libroExistente) {
+            catalogoLibros.add(libro);
+        }
         if (!libro.getIdiomas().isEmpty()) {
             libro.setIdiomas(List.of(libro.getIdiomas().get(0)));
         }

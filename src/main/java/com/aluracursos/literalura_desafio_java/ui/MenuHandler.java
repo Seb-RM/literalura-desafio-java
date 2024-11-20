@@ -22,7 +22,7 @@ public class MenuHandler {
                 if (opcion >= 1 && opcion <= 6) {
                     return opcion;
                 } else {
-                    System.out.println("⚠️ Opción fuera de rango. Por favor, ingrese un número entre 1 y 4.");
+                    System.out.println("⚠️ Opción fuera de rango. Por favor, ingrese un número entre 1 y 6.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("⚠️ Entrada inválida. Por favor, ingrese un número.");

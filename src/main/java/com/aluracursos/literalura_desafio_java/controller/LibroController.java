@@ -20,15 +20,15 @@ public class LibroController {
 
     public String buscarLibros(String query) {
         Libro libro = libroService.buscarLibros(query);
-        return libro != null ? libro.toString() : "No se encontró el libro con título: " + query;
+        return libro != null ? libro.toString() : "\n❌ No se encontró el libro con título: " + query;
     }
 
     public String listarTodosLosLibros() {
         List<Libro> libros = libroService.listarTodosLosLibros();
         if (libros.isEmpty()) {
-            return "❌ No hay libros disponibles en el catálogo.";
+            return "\n❌ No hay libros disponibles en el catálogo.";
         }
-        return "Listado de todos los libros:\n" +
+        return "\nListado de todos los libros buscados: " +
                 libros.stream()
                         .map(Libro::toString)
                         .collect(Collectors.joining("\n"));
@@ -37,9 +37,9 @@ public class LibroController {
     public String filtrarLibrosPorIdioma(String idioma) {
         List<Libro> librosPorIdioma = libroService.filtrarLibrosPorIdioma(idioma);
         if (librosPorIdioma.isEmpty()) {
-            return "❌ No se encontraron libros en el idioma: " + idioma;
+            return "\n❌ No se encontraron libros en el idioma: " + idioma;
         }
-        return "Libros disponibles en " + idioma + ":\n" +
+        return "\nLibros disponibles en " + idioma + ": " +
                 librosPorIdioma.stream()
                         .map(Libro::toString)
                         .collect(Collectors.joining("\n"));
@@ -48,9 +48,9 @@ public class LibroController {
     public String listarTodosLosAutores() {
         Set<Autor> autores = libroService.listarAutoresBuscados();
         if (autores.isEmpty()) {
-            return "❌ No se encontraron autores buscados.";
+            return "\n❌ No se encontraron autores buscados.";
         }
-        return "\n👨‍💼 Lista de autores buscados:\n" +
+        return "\n👨‍💼 Lista de autores buscados: " +
                 autores.stream()
                         .map(Autor::toString)
                         .collect(Collectors.joining("\n"));

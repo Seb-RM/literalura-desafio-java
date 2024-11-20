@@ -40,12 +40,12 @@ public class Autor {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("👤 Nombre: ").append(nombre).append('\n');
+        sb.append("\n👤 Nombre: ").append(nombre).append('\n');
         sb.append("   🗓️ Año de Nacimiento: ").append(fechaNacimiento).append('\n');
         if (fechaFallecimiento != null) {
-            sb.append("   🕊️ Año de Fallecimiento: ").append(fechaFallecimiento).append('\n');
+            sb.append("   🕊️ Año de Fallecimiento: ").append(fechaFallecimiento);
         } else {
-            sb.append("   🟢 Aún con vida").append('\n');
+            sb.append("   🟢 Aún con vida");
         }
         return sb.toString();
     }
