@@ -38,14 +38,6 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public List<Autor> getAutores() {
-        return autores;
-    }
-
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-    }
-
     public Autor getAutor() {
         return autor;
     }
@@ -78,10 +70,15 @@ public class Libro {
         this.numeroDescargas = numeroDescargas;
     }
 
-    public void setAutoresJson(List<Autor> autoresJson) {
-        this.autores = autoresJson; // Campo temporal por si es necesario
-        this.autor = (autoresJson != null && !autoresJson.isEmpty()) ? autoresJson.get(0) : null;
+    public List<Autor> getAutores(){
+        return autores;
     }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+        this.autor = (autores != null && !autores.isEmpty()) ? autores.get(0) : null;
+    }
+
 
     @Override
     public String toString() {
@@ -89,7 +86,7 @@ public class Libro {
         sb.append("\n📖 Título: ").append(titulo).append('\n');
         sb.append("👨‍💼 Autor: ");
         if (autor != null) {
-            sb.append(autor).append('\n');
+            sb.append(autor);
         } else {
             sb.append("Autor desconocido.\n");
         }

@@ -50,7 +50,7 @@ public class LibroController {
         if (autores.isEmpty()) {
             return "❌ No se encontraron autores buscados.";
         }
-        return "👨‍💼 Lista de autores buscados:\n" +
+        return "\n👨‍💼 Lista de autores buscados:\n" +
                 autores.stream()
                         .map(Autor::toString)
                         .collect(Collectors.joining("\n"));
