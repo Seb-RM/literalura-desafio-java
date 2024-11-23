@@ -25,16 +25,28 @@ public class Autor {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(int fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaNacimiento(Integer fechaNacimiento) {
+        if (fechaNacimiento == null || fechaNacimiento < 0) {
+            this.fechaNacimiento = 0;
+        } else {
+            this.fechaNacimiento = fechaNacimiento;
+        }
     }
 
     public int getFechaFallecimiento() {
         return fechaFallecimiento;
     }
 
-    public void setFechaFallecimiento(int fechaFallecimiento) {
-        this.fechaFallecimiento = fechaFallecimiento;
+    public void setFechaFallecimiento(Integer fechaFallecimiento) {
+        if (fechaFallecimiento == null) {
+            this.fechaFallecimiento = 0;
+        } else if (fechaFallecimiento < 0) {
+            this.fechaFallecimiento = 0;
+        } else if (fechaNacimiento != null && fechaFallecimiento <= fechaNacimiento) {
+            this.fechaFallecimiento = 0;
+        } else {
+            this.fechaFallecimiento = fechaFallecimiento;
+        }
     }
 
     @Override
