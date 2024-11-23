@@ -90,8 +90,9 @@ public class MostrarMenu {
     }
 
     private void manejarListarAutoresVivos() {
-        int anio = menuHandler.solicitarAnio(); // Solicita el año al usuario.
-        menuHandler.mostrarMensaje(libroController.listarAutoresVivos(anio));
+        int anio = menuHandler.solicitarAnio();
+        String resultado = libroController.listarAutoresVivos(anio);
+        menuHandler.mostrarMensaje(resultado);
     }
 
 
