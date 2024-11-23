@@ -91,7 +91,7 @@ public class Libro {
         } else {
             sb.append("Autor desconocido.\n");
         }
-        sb.append("📚 Temáticas:\n");
+        sb.append("\n📚 Temáticas:\n");
         tematicas.forEach(tematica -> sb.append("    - ").append(tematica).append('\n'));
         sb.append("🌍 Idiomas:\n");
         if (idiomas.isEmpty()) {

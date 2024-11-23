@@ -38,10 +38,10 @@ public class MostrarMenu {
 
                     switch (opcion) {
                         case 1 -> manejarBusqueda();
-//                        case 2 -> manejarLibrosPopulares();
-                        case 3 -> manejarListarTodosLosAutores();
-                        case 4 -> manejarListarTodosLosLibros();
-                        case 5 -> manejarFiltrarLibrosPorIdioma();
+                        case 2 -> manejarListarTodosLosAutores();
+                        case 3 -> manejarListarTodosLosLibros();
+                        case 4 -> manejarFiltrarLibrosPorIdioma();
+                        case 5 -> manejarListarAutoresVivos();
                         case 6 -> {
                             menuHandler.cerrarScanner();
                             mostrarMensajeDespedida();
@@ -62,10 +62,10 @@ public class MostrarMenu {
         System.out.println("Seleccione una opción del menú:");
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
         System.out.println("1️⃣ Buscar libros por título o autor");
-        System.out.println("2️⃣ Mostrar los libros más populares");
-        System.out.println("3️⃣ Listar todos los autores buscados");
-        System.out.println("4️⃣ Listar todos los libros buscados");
-        System.out.println("5️⃣ Filtrar libros buscados por idioma");
+        System.out.println("2️⃣ Listar todos los autores buscados");
+        System.out.println("3️⃣ Listar todos los libros buscados");
+        System.out.println("4️⃣ Filtrar libros buscados por idioma");
+        System.out.println("5️⃣ Listar autores vivos en un año deternimado");
         System.out.println("6️⃣ Salir");
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
     }

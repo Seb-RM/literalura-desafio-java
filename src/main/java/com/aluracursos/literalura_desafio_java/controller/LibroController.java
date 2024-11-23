@@ -60,7 +60,7 @@ public class LibroController {
         List<Autor> autoresVivos = libroService.listarAutoresVivos(anio);
 
         if (autoresVivos.isEmpty()) {
-            System.out.println("⚠️ No se encontraron autores vivos en el año " + anio);
+            return  "⚠️ No se encontraron autores vivos en el año " + anio;
         }
 
         StringBuilder resultado = new StringBuilder("\n📜 Autores vivos en el año " + anio + ":\n");
