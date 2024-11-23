@@ -42,6 +42,27 @@ public class MenuHandler {
         return leerEntrada();
     }
 
+    public int solicitarAnio() {
+        int anio = -1;
+        boolean entradaValida = false;
+
+        while (!entradaValida) {
+            try {
+                System.out.print("\nIngrese el año deseado: ");
+                anio = Integer.parseInt(leerEntrada());
+                if (anio >= 0) {
+                    entradaValida = true;
+                } else {
+                    System.out.println("⚠️ Por favor, ingrese un año válido (mayor o igual a 0).");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Entrada no válida. Por favor, ingrese un número.");
+            }
+        }
+
+        return anio;
+    }
+
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }

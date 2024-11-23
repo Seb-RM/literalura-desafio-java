@@ -68,4 +68,11 @@ public class LibroService {
         return autoresBuscados;
     }
 
+    public List<Autor> listarAutoresVivos(int anio) {
+        return autoresBuscados.stream()
+                .filter(autor -> autor.getFechaNacimiento() <= anio &&
+                        (autor.getFechaFallecimiento() == 0 || autor.getFechaFallecimiento() > anio))
+                .collect(Collectors.toList());
+    }
+
 }

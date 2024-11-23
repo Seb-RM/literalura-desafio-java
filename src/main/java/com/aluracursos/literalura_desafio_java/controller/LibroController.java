@@ -56,4 +56,17 @@ public class LibroController {
                         .collect(Collectors.joining("\n"));
     }
 
+    public String listarAutoresVivos(int anio) {
+        List<Autor> autoresVivos = libroService.listarAutoresVivos(anio);
+
+        if (autoresVivos.isEmpty()) {
+            System.out.println("⚠️ No se encontraron autores vivos en el año " + anio);
+        }
+
+        StringBuilder resultado = new StringBuilder("\n📜 Autores vivos en el año " + anio + ":\n");
+        autoresVivos.forEach(autor -> resultado.append(autor).append("\n"));
+        return resultado.toString();
+
+    }
+
 }

@@ -61,9 +61,9 @@ public class MostrarMenu {
         System.out.println(ANSI_GREEN + "=======================================" + ANSI_RESET);
         System.out.println("Seleccione una opción del menú:");
         System.out.println(ANSI_CYAN + "---------------------------------------" + ANSI_RESET);
-        System.out.println("1️⃣ Buscar libros por título");
+        System.out.println("1️⃣ Buscar libros por título o autor");
         System.out.println("2️⃣ Mostrar los libros más populares");
-        System.out.println("3️⃣ Filtrar libros por autores buscados");
+        System.out.println("3️⃣ Listar todos los autores buscados");
         System.out.println("4️⃣ Listar todos los libros buscados");
         System.out.println("5️⃣ Filtrar libros buscados por idioma");
         System.out.println("6️⃣ Salir");
@@ -88,6 +88,12 @@ public class MostrarMenu {
         String idioma = menuHandler.solicitarIdioma();
         menuHandler.mostrarMensaje(libroController.filtrarLibrosPorIdioma(idioma));
     }
+
+    private void manejarListarAutoresVivos() {
+        int anio = menuHandler.solicitarAnio(); // Solicita el año al usuario.
+        menuHandler.mostrarMensaje(libroController.listarAutoresVivos(anio));
+    }
+
 
     private void mostrarMensajeDespedida() {
         System.out.println(ANSI_GREEN + "\n=======================================");
