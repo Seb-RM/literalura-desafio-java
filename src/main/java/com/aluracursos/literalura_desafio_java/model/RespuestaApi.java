@@ -1,13 +1,17 @@
 package com.aluracursos.literalura_desafio_java.model;
 
+import com.aluracursos.literalura_desafio_java.dto.LibroDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RespuestaApi {
 
     private int count;
     private String next;
     private String previous;
-    private List<Libro> results;
+    private List<LibroDto> results;
 
     public int getCount() {
         return count;
@@ -33,11 +37,11 @@ public class RespuestaApi {
         this.previous = previous;
     }
 
-    public List<Libro> getResults() {
+    public List<LibroDto> getResults() {
         return results;
     }
 
-    public void setResults(List<Libro> results) {
+    public void setResults(List<LibroDto> results) {
         this.results = results;
     }
 

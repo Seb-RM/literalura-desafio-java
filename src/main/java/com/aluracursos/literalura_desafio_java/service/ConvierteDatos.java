@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConvierteDatos {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
+
+    public ConvierteDatos(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     public RespuestaApi convertJsonToApiResponse(String json) {
         try {

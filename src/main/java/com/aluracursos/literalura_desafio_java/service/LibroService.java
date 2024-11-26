@@ -1,6 +1,7 @@
 package com.aluracursos.literalura_desafio_java.service;
 
 import com.aluracursos.literalura_desafio_java.client.LibroApiClient;
+import com.aluracursos.literalura_desafio_java.mapper.LibroMapper;
 import com.aluracursos.literalura_desafio_java.model.Autor;
 import com.aluracursos.literalura_desafio_java.model.Libro;
 import com.aluracursos.literalura_desafio_java.model.RespuestaApi;
@@ -17,13 +18,16 @@ public class LibroService {
     private final ConvierteDatos convierteDatos;
     private final LibroRepository libroRepository;
     private final AutorRepository autorRepository;
+    private final LibroMapper libroMapper;
 
     public LibroService(LibroApiClient apiClient, ConvierteDatos convierteDatos,
-                        LibroRepository libroRepository, AutorRepository autorRepository) {
+                        LibroRepository libroRepository, AutorRepository autorRepository,
+                        LibroMapper libroMapper) {
         this.apiClient = apiClient;
         this.convierteDatos = convierteDatos;
         this.libroRepository = libroRepository;
         this.autorRepository = autorRepository;
+        this.libroMapper = libroMapper;
     }
 
     public Libro buscarLibros(String query) {
@@ -37,7 +41,8 @@ public class LibroService {
             return null;
         }
 
-        Libro libro = respuestaApi.getResults().get(0);
+        Libro libro = libroMapper.toEntity(respuestaApi.getResults().get(0));
+
 
         Libro libroExistente = libroRepository.findByTituloIgnoreCase(libro.getTitulo())
                 .orElse(null);
