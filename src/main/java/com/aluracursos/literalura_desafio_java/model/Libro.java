@@ -1,26 +1,35 @@
 package com.aluracursos.literalura_desafio_java.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "libros")
 public class Libro {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @JsonProperty("title")
+
     private String titulo;
-    @JsonProperty("authors")
-    private List<Autor> autores;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "autor_id")
     private Autor autor;
-    @JsonProperty("subjects")
-    private List<String> tematicas;
-    @JsonProperty("languages")
-    private List<String> idiomas;
-    @JsonProperty("download_count")
+
+    @ElementCollection
+    @CollectionTable(name = "libro_tematicas", joinColumns = @JoinColumn(name = "libro_id"))
+    @Column(name = "tematica")
+    private List<String> tematicas = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "libro_idiomas", joinColumns = @JoinColumn(name = "libro_id"))
+    @Column(name = "idioma")
+    private List<String> idiomas = new ArrayList<>();
+
     private int numeroDescargas;
 
     public int getId() {
@@ -71,16 +80,6 @@ public class Libro {
         this.numeroDescargas = numeroDescargas;
     }
 
-    public List<Autor> getAutores(){
-        return autores;
-    }
-
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-        this.autor = (autores != null && !autores.isEmpty()) ? autores.get(0) : null;
-    }
-
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -109,11 +108,11 @@ public class Libro {
         if (o == null || getClass() != o.getClass()) return false;
         Libro libro = (Libro) o;
         return Objects.equals(titulo, libro.titulo) &&
-                Objects.equals(autores, libro.autores);
+                Objects.equals(autor, libro.autor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, autores);
+        return Objects.hash(titulo, autor);
     }
 }

@@ -1,17 +1,32 @@
 package com.aluracursos.literalura_desafio_java.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "autores")
 public class Autor {
 
-    @JsonProperty("name")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nombre;
-    @JsonProperty("birth_year")
+
+    @Column(name = "fecha_nacimiento")
     private Integer fechaNacimiento;
-    @JsonProperty("death_year")
+
+    @Column(name = "fecha_fallecimiento")
     private Integer fechaFallecimiento;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -21,7 +36,7 @@ public class Autor {
         this.nombre = nombre;
     }
 
-    public int getFechaNacimiento() {
+    public Integer getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -33,7 +48,7 @@ public class Autor {
         }
     }
 
-    public int getFechaFallecimiento() {
+    public Integer getFechaFallecimiento() {
         return fechaFallecimiento;
     }
 
@@ -76,6 +91,5 @@ public class Autor {
     public int hashCode() {
         return Objects.hash(nombre, fechaNacimiento, fechaFallecimiento);
     }
-
 
 }
