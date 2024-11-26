@@ -45,10 +45,10 @@ public class LibroService {
             libro.setIdiomas(List.of(libro.getIdiomas().get(0)));
         }
 
-        if (libro.getAutores() != null && !libro.getAutores().isEmpty()) {
-            Autor primerAutor = libro.getAutores().get(0);
-            if (!autoresBuscados.contains(primerAutor)) {
-                autoresBuscados.add(primerAutor);
+        if (libro.getAutor() != null) {
+            Autor autor = libro.getAutor();
+            if (!autoresBuscados.contains(autor)) {
+                autoresBuscados.add(autor);
             }
         }
         return libro;
