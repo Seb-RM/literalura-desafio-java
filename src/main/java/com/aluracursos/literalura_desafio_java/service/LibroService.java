@@ -4,22 +4,26 @@ import com.aluracursos.literalura_desafio_java.client.LibroApiClient;
 import com.aluracursos.literalura_desafio_java.model.Autor;
 import com.aluracursos.literalura_desafio_java.model.Libro;
 import com.aluracursos.literalura_desafio_java.model.RespuestaApi;
+import com.aluracursos.literalura_desafio_java.repository.AutorRepository;
+import com.aluracursos.literalura_desafio_java.repository.LibroRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class LibroService {
 
     private final LibroApiClient apiClient;
     private final ConvierteDatos convierteDatos;
-    private final List<Libro> catalogoLibros = new ArrayList<>();
-    private final Set<Autor> autoresBuscados = new HashSet<>();
+    private final LibroRepository libroRepository;
+    private final AutorRepository autorRepository;
 
-    public LibroService(LibroApiClient apiClient, ConvierteDatos convierteDatos) {
+    public LibroService(LibroApiClient apiClient, ConvierteDatos convierteDatos,
+                        LibroRepository libroRepository, AutorRepository autorRepository) {
         this.apiClient = apiClient;
         this.convierteDatos = convierteDatos;
+        this.libroRepository = libroRepository;
+        this.autorRepository = autorRepository;
     }
 
     public Libro buscarLibros(String query) {
@@ -35,44 +39,38 @@ public class LibroService {
 
         Libro libro = respuestaApi.getResults().get(0);
 
-        boolean libroExistente = catalogoLibros.stream()
-                .anyMatch(l -> l.getTitulo().equals(libro.getTitulo()));
+        Libro libroExistente = libroRepository.findByTituloIgnoreCase(libro.getTitulo())
+                .orElse(null);
 
-        if (!libroExistente) {
-            catalogoLibros.add(libro);
-        }
-        if (!libro.getIdiomas().isEmpty()) {
-            libro.setIdiomas(List.of(libro.getIdiomas().get(0)));
+        if (libroExistente != null) {
+            return libroExistente;
         }
 
         if (libro.getAutor() != null) {
             Autor autor = libro.getAutor();
-            if (!autoresBuscados.contains(autor)) {
-                autoresBuscados.add(autor);
-            }
+            Autor autorExistente = autorRepository.findByNombreIgnoreCase(autor.getNombre())
+                    .orElseGet(() -> autorRepository.save(autor));
+            libro.setAutor(autorExistente);
         }
-        return libro;
+
+        return libroRepository.save(libro);
     }
 
     public List<Libro> listarTodosLosLibros() {
-        return new ArrayList<>(catalogoLibros);
+        return libroRepository.findAll();
     }
 
     public List<Libro> filtrarLibrosPorIdioma(String idioma) {
-        return catalogoLibros.stream()
-                .filter(libro -> !libro.getIdiomas().isEmpty() && libro.getIdiomas().get(0).equalsIgnoreCase(idioma))
-                .collect(Collectors.toList());
+        return libroRepository.findByIdiomasContaining(idioma);
     }
 
-    public Set<Autor> listarAutoresBuscados() {
-        return autoresBuscados;
+    public List<Autor> listarAutoresBuscados() {
+        return autorRepository.findAll();
     }
 
     public List<Autor> listarAutoresVivos(int anio) {
-        return autoresBuscados.stream()
-                .filter(autor -> autor.getFechaNacimiento() <= anio &&
-                        (autor.getFechaFallecimiento() == 0 || autor.getFechaFallecimiento() > anio))
-                .collect(Collectors.toList());
+        return autorRepository.findByFechaNacimientoBeforeAndFechaFallecimientoAfter(anio, anio);
     }
-
 }
+
+

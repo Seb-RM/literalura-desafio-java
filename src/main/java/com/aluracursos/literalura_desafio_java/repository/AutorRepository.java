@@ -19,4 +19,7 @@ public interface AutorRepository extends JpaRepository<Autor, Long> {
 
     // Metodo para buscar autores por año de fallecimiento
     List<Autor> findByFechaFallecimiento(Integer fechaFallecimiento);
+
+    // Metodo para buscar autores vivos en un año determinado
+    List<Autor> findByFechaNacimientoBeforeAndFechaFallecimientoAfter(int inicio, int fin);
 }

@@ -3,19 +3,23 @@ package com.aluracursos.literalura_desafio_java.mapper;
 import com.aluracursos.literalura_desafio_java.dto.AutorDto;
 import com.aluracursos.literalura_desafio_java.dto.LibroDto;
 import com.aluracursos.literalura_desafio_java.model.Libro;
+import com.aluracursos.literalura_desafio_java.repository.LibroRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class LibroMapper {
 
-    public static Libro toEntity(LibroDto dto) {
+
+    public Libro toEntity(LibroDto dto) {
         if (dto == null) return null;
 
         Libro libro = new Libro();
         libro.setId(dto.id());
         libro.setTitulo(dto.titulo());
         libro.setTematicas(dto.tematicas());
-        libro.setIdiomas(dto.idiomas());
+        libro.setIdiomas(procesarIdiomas(dto.idiomas()));
         libro.setNumeroDescargas(dto.numeroDescargas());
 
         // Extrae el primer autor de la lista, si existe.
@@ -44,5 +48,12 @@ public class LibroMapper {
                 libro.getIdiomas(),
                 libro.getNumeroDescargas()
         );
+    }
+
+    private List<String> procesarIdiomas(List<String> idiomas) {
+        if (idiomas == null || idiomas.isEmpty()) {
+            return List.of(); // Retorna lista vacía si no hay idiomas
+        }
+        return List.of(idiomas.get(0)); // Retorna solo el primer idioma
     }
 }

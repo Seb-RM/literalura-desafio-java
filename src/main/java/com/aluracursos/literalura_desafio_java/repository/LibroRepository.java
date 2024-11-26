@@ -1,11 +1,16 @@
 package com.aluracursos.literalura_desafio_java.repository;
 
+import com.aluracursos.literalura_desafio_java.model.Autor;
 import com.aluracursos.literalura_desafio_java.model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LibroRepository extends JpaRepository<Libro, Integer> {
+
+    // Buscar libros por título exacto, ignorando mayúsculas/minúsculas
+    Optional<Libro> findByTituloIgnoreCase(String titulo);
 
     // Metodo para buscar libros por título (ignorando mayúsculas y minúsculas)
     List<Libro> findByTituloIgnoreCaseContaining(String titulo);
@@ -18,4 +23,5 @@ public interface LibroRepository extends JpaRepository<Libro, Integer> {
 
     // Metodo para buscar libros por idioma
     List<Libro> findByIdiomasContaining(String idioma);
+
 }

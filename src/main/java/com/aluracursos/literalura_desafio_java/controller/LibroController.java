@@ -46,7 +46,7 @@ public class LibroController {
     }
 
     public String listarTodosLosAutores() {
-        Set<Autor> autores = libroService.listarAutoresBuscados();
+        List<Autor> autores = libroService.listarAutoresBuscados();
         if (autores.isEmpty()) {
             return "\n❌ No se encontraron autores buscados.";
         }
