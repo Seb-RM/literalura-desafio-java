@@ -73,11 +73,11 @@ public class Libro {
         } else {
             sb.append("Autor desconocido.\n");
         }
-            sb.append("🌍 Idioma:\n");
+            sb.append("\n🌍 Idioma:");
             if (idioma == null || idioma.isEmpty()) {
                 sb.append("    No se especificó idioma.\n");
             } else {
-                sb.append("    - ").append(idioma).append('\n');
+                sb.append(idioma).append(" - ").append('\n');
             }
         sb.append("🔢 Número de Descargas: ").append(numeroDescargas);
         return sb.toString();

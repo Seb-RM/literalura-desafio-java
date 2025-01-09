@@ -47,7 +47,7 @@ public class LibroService {
             }
 
             Libro libro = libroMapper.toEntity(respuestaApi.getResults().get(0));
-            logger.info("Mapper: libro convertido a DTO: {}", libro);
+//            logger.info("Mapper: libro convertido a DTO: {}", libro);
 
             Optional<Libro> libroExistenteOpt = libroRepository.findByTituloIgnoreCase(libro.getTitulo());
             if (libroExistenteOpt.isPresent()) {
