@@ -75,7 +75,7 @@ public class Libro {
         }
             sb.append("\n🌍 Idioma:");
             if (idioma == null || idioma.isEmpty()) {
-                sb.append("    No se especificó idioma.\n");
+                sb.append(" No se especificó idioma.\n");
             } else {
                 sb.append(idioma).append(" - ").append('\n');
             }
