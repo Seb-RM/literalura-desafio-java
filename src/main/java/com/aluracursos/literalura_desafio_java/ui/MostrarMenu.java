@@ -1,7 +1,8 @@
 package com.aluracursos.literalura_desafio_java.ui;
 
 import com.aluracursos.literalura_desafio_java.controller.LibroController;
-import com.aluracursos.literalura_desafio_java.service.LibroService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,6 +10,8 @@ public class MostrarMenu {
 
     private final MenuHandler menuHandler;
     private final LibroController libroController;
+    private static final Logger logger = LoggerFactory.getLogger(MostrarMenu.class);
+    private boolean buscando = false;
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -71,9 +74,16 @@ public class MostrarMenu {
     }
 
     private void manejarBusqueda() {
+        if (buscando) {
+            menuHandler.mostrarMensaje("⚠️ Ya se está procesando una búsqueda. Por favor, espere.");
+            return;
+        }
+        buscando = true;
         String query = menuHandler.solicitarQuery();
+        logger.info("Buscando libros con la consulta: " + query);
         String resultado = libroController.buscarLibros(query);
         menuHandler.mostrarMensaje("\nResultado: " + resultado);
+        buscando = false;
     }
 
     private void manejarListarTodosLosLibros() {

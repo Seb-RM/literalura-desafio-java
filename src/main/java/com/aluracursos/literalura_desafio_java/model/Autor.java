@@ -12,6 +12,7 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
 
     @Column(name = "fecha_nacimiento")
@@ -78,18 +79,16 @@ public class Autor {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Autor autor = (Autor) obj;
-        return Objects.equals(nombre, autor.nombre) &&
-                Objects.equals(fechaNacimiento, autor.fechaNacimiento) &&
-                Objects.equals(fechaFallecimiento, autor.fechaFallecimiento);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return id.equals(autor.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, fechaNacimiento, fechaFallecimiento);
+        return Objects.hash(id);
     }
 
 }

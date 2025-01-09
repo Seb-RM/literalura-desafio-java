@@ -6,7 +6,6 @@ import com.aluracursos.literalura_desafio_java.service.LibroService;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -19,8 +18,12 @@ public class LibroController {
     }
 
     public String buscarLibros(String query) {
-        Libro libro = libroService.buscarLibros(query);
-        return libro != null ? libro.toString() : "\n❌ No se encontró el libro con título: " + query;
+        try {
+            Libro libro = libroService.buscarLibros(query);
+            return libro != null ? libro.toString() : "\n⚠️ No se encontraron resultados para: " + query;
+        } catch (Exception e) {
+            return "⚠️ Ocurrió un error al buscar el libro: " + e.getMessage();
+        }
     }
 
     public String listarTodosLosLibros() {

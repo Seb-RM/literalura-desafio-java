@@ -75,11 +75,12 @@ public class MenuHandler {
     }
 
     private String leerEntrada() {
-        String entrada = scanner.nextLine();
-        if (entrada.isBlank()) {
+        while (true) {
+            String entrada = scanner.nextLine();
+            if (!entrada.isBlank()) {
+                return entrada.trim();
+            }
             System.out.println("⚠️ Debe ingresar una respuesta. Intente nuevamente.");
-            return leerEntrada();
         }
-        return entrada.trim();
     }
 }

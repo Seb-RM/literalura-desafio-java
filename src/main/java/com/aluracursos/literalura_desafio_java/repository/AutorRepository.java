@@ -2,7 +2,6 @@ package com.aluracursos.literalura_desafio_java.repository;
 
 import com.aluracursos.literalura_desafio_java.model.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

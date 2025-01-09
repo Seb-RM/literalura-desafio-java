@@ -1,7 +1,5 @@
 package com.aluracursos.literalura_desafio_java.client;
 
-
-import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
@@ -14,11 +12,10 @@ import java.util.logging.Logger;
 @Component
 public class LibroApiClient {
 
-    private static final Dotenv dotenv = Dotenv.configure().load();
-    private static final String API_URL = dotenv.get("API_URL");
+    private static final String API_URL = "https://gutendex.com/books/";
     private static final HttpClient client = HttpClient.newBuilder()
             .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();;
+            .build();
     private static final Logger logger = Logger.getLogger(LibroApiClient.class.getName());
 
 

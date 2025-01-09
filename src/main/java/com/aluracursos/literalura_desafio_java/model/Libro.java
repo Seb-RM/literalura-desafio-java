@@ -2,8 +2,6 @@ package com.aluracursos.literalura_desafio_java.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,21 +12,15 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String titulo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "autor_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Autor autor;
 
-    @ElementCollection
-    @CollectionTable(name = "libro_tematicas", joinColumns = @JoinColumn(name = "libro_id"))
-    @Column(name = "tematica")
-    private List<String> tematicas = new ArrayList<>();
-
-    @ElementCollection
-    @CollectionTable(name = "libro_idiomas", joinColumns = @JoinColumn(name = "libro_id"))
     @Column(name = "idioma")
-    private List<String> idiomas = new ArrayList<>();
+    private String idioma;
 
     private int numeroDescargas;
 
@@ -56,22 +48,13 @@ public class Libro {
         this.autor = autor;
     }
 
-    public List<String> getTematicas() {
-        return tematicas;
+    public String getIdioma() {
+        return idioma;
     }
 
-    public void setTematicas(List<String> tematicas) {
-        this.tematicas = tematicas;
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
-
-    public List<String> getIdiomas() {
-        return idiomas;
-    }
-
-    public void setIdiomas(List<String> idiomas) {
-        this.idiomas = idiomas != null ? idiomas : new ArrayList<>();
-    }
-
     public int getNumeroDescargas() {
         return numeroDescargas;
     }
@@ -90,14 +73,12 @@ public class Libro {
         } else {
             sb.append("Autor desconocido.\n");
         }
-        sb.append("\n📚 Temáticas:\n");
-        tematicas.forEach(tematica -> sb.append("    - ").append(tematica).append('\n'));
-        sb.append("🌍 Idiomas:\n");
-        if (idiomas.isEmpty()) {
-            sb.append("    No se especificaron idiomas.\n");
-        } else {
-            idiomas.forEach(idioma -> sb.append("    - ").append(idioma).append('\n'));
-        }
+            sb.append("🌍 Idioma:\n");
+            if (idioma == null || idioma.isEmpty()) {
+                sb.append("    No se especificó idioma.\n");
+            } else {
+                sb.append("    - ").append(idioma).append('\n');
+            }
         sb.append("🔢 Número de Descargas: ").append(numeroDescargas);
         return sb.toString();
     }
@@ -107,12 +88,11 @@ public class Libro {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Libro libro = (Libro) o;
-        return Objects.equals(titulo, libro.titulo) &&
-                Objects.equals(autor, libro.autor);
+        return id == libro.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, autor);
+        return Objects.hash(id);
     }
 }
