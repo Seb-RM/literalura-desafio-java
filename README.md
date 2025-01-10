@@ -136,7 +136,7 @@ Seleccione una opción del menú:
 ### Opciones de Interacción
 1. **Buscar libros por título o nombre del autor:**
     - Ingresa un título para buscar libros relacionados en la API de Gutendex. Si el libro no existe en la base de datos local, será agregado automáticamente.
-      - Ejemplo:
+- Ejemplo:
 ```bash
 Seleccione una opción: 1
 Ingrese el título del libro o el autor: hamlet
@@ -150,9 +150,9 @@ Resultado:
 🌍 Idioma:en -
 🔢 Número de Descargas: 11383
 ```
-2. **Listar todos los autores guardados:**
+2. **Listar todos los autores buscados:**
     - Obtén una lista de todos los autores cuyos libros han sido registrados en la base de datos.
-    - Ejemplo:
+- Ejemplo:
 ```bash
 Seleccione una opción: 2
 
@@ -169,47 +169,106 @@ Seleccione una opción: 2
 🗓️ Año de Nacimiento: 1547
 🕊️ Año de Fallecimiento: 1616
  ```
-3. **Listar todos los libros guardados:**
+3. **Listar todos los libros buscados:**
     - Consulta todos los libros que han sido buscados previamente y almacenados en la base de datos.
-    - Ejemplo:
-      ```
-      Libros en la base de datos:
-      - Hamlet (William Shakespeare)
-      - Pride and Prejudice (Jane Austen)
-      ```
+- Ejemplo:
+```bash
+Seleccione una opción: 3
 
-4. **Listar todos los autores guardados:**
-    - Obtén una lista de todos los autores cuyos libros han sido registrados en la base de datos.
-    - Ejemplo:
-      ```
-      Autores en la base de datos:
-      - William Shakespeare
-      - Jane Austen
-      ```
+Listado de todos los libros buscados: 
+📖 Título: Moby Dick; Or, The Whale
+👨‍💼 Autor: 
+👤 Nombre: Melville, Herman
+   🗓️ Año de Nacimiento: 1819
+   🕊️ Año de Fallecimiento: 1891
+🌍 Idioma:en - 
+🔢 Número de Descargas: 72786
 
-5. **Listar libros por idioma:**
+📖 Título: Dracula
+👨‍💼 Autor: 
+👤 Nombre: Stoker, Bram
+   🗓️ Año de Nacimiento: 1847
+   🕊️ Año de Fallecimiento: 1912
+🌍 Idioma:en - 
+🔢 Número de Descargas: 30413
+
+📖 Título: Don Quijote
+👨‍💼 Autor: 
+👤 Nombre: Cervantes Saavedra, Miguel de
+   🗓️ Año de Nacimiento: 1547
+   🕊️ Año de Fallecimiento: 1616
+🌍 Idioma:es - 
+🔢 Número de Descargas: 16017
+```
+
+4. **Filtrar libros buscados por idioma:**
     - Filtra los libros guardados según el idioma en el que se encuentran.
-    - Ejemplo:
-      ```
-      Por favor, ingresa el idioma (código ISO 639-1): en
-      Libros en inglés:
-      - Hamlet (William Shakespeare)
-      ```
+- Ejemplo:
+```bash
+Seleccione una opción: 4
 
-6. **Listar autores vivos en un año específico:**
+Ingrese el idioma deseado: es
+
+Libros disponibles en es:
+📖 Título: Don Quijote
+👨‍💼 Autor:
+👤 Nombre: Cervantes Saavedra, Miguel de
+🗓️ Año de Nacimiento: 1547
+🕊️ Año de Fallecimiento: 1616
+🌍 Idioma:es -
+🔢 Número de Descargas: 16017
+
+📖 Título: La Celestina
+👨‍💼 Autor:
+👤 Nombre: Rojas, Fernando de
+🗓️ Año de Nacimiento: 0
+🕊️ Año de Fallecimiento: 1541
+🌍 Idioma:es -
+🔢 Número de Descargas: 578
+```
+
+5. **Listar autores vivos en un año deternimado:**
     - Ingresa un año para obtener los autores que estaban vivos en esa fecha.
-    - Ejemplo:
-      ```
-      Por favor, ingresa un año: 1850
-      Autores vivos en 1850:
-      - Charles Dickens
-      - Mark Twain
-      ```
+- Ejemplo:
+```bash
+Seleccione una opción: 5
+
+Ingrese el año deseado: 1925
+
+📜 Autores vivos en el año 1925:
+
+👤 Nombre: Kipling, Rudyard
+   🗓️ Año de Nacimiento: 1865
+   🕊️ Año de Fallecimiento: 1936
+---------------------------------------
+Seleccione una opción: 5
+
+Ingrese el año deseado: 2025
+⚠️ No se encontraron autores vivos en el año 2025
+```
+
+6. **Salir:**
+    - Cierra la aplicación.
+- Ejemplo:
+```bash
+  Seleccione una opción: 6
+🛑 Recurso de entrada cerrado.
+
+=======================================
+     ¡Gracias por usar el sistema!     
+=======================================
+```
 
 ### Navegación y Entrada
 - Sigue las instrucciones que aparecen en pantalla para seleccionar una opción.
 - En caso de ingresar una entrada no válida, se te pedirá que intentes nuevamente.
-
+```bash
+Seleccione una opción: 7
+⚠️ Opción fuera de rango. Por favor, ingrese un número entre 1 y 6.
+---------------------------------------
+Seleccione una opción: a
+⚠️ Entrada inválida. Por favor, ingrese un número.
+```
 ### Notas Adicionales
 - Los resultados de las búsquedas se guardan automáticamente en la base de datos para futuras consultas.
 - Si un libro o autor ya existe en la base de datos, la aplicación evita duplicados y muestra la información desde el almacenamiento local.
