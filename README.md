@@ -12,6 +12,15 @@ Además de las búsquedas individuales, Literalura ofrece una serie de funcional
 
 ¡Explora el catálogo de Literalura!
 
+# Índice
+
+- [Introducción](#introducción)
+- [Características](#características)
+- [Requisitos Previos](#requisitos-previos)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Créditos](#créditos)
+
 ## Características
 
 Literalura ofrece diversas funcionalidades que permiten a los usuarios interactuar con un catálogo de libros de manera eficiente. A continuación, se detallan las principales características de la aplicación:
