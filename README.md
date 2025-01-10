@@ -274,3 +274,14 @@ Seleccione una opción: a
 - Si un libro o autor ya existe en la base de datos, la aplicación evita duplicados y muestra la información desde el almacenamiento local.
 
 ¡Explora las opciones y disfruta de tu catálogo literario personalizado con **Literalura**!
+
+## Créditos
+
+Este proyecto utiliza la API de **Gutendex** para obtener información sobre libros y autores. Gutendex es una API pública basada en los datos del **Proyecto Gutenberg**, que proporciona acceso a miles de libros en formato digital.
+
+### Enlace a la API
+- [Gutendex API](https://gutendex.com/)
+
+---
+
+Si deseas obtener más información sobre Gutendex o explorar su funcionalidad, visita su página oficial a través del enlace proporcionado.
