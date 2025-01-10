@@ -59,3 +59,159 @@ Antes de utilizar Literalura, asegúrate de cumplir con los siguientes requisito
 
 Asegúrate de cumplir con estos requisitos antes de iniciar la aplicación para garantizar su correcto funcionamiento.
 
+## Instalación
+
+Sigue estos pasos para instalar y ejecutar Literalura en tu entorno local:
+
+### 1. Clona el Repositorio
+Descarga el proyecto desde el repositorio utilizando Git:
+```bash
+  git clone <URL_DEL_REPOSITORIO>
+```
+Reemplaza `<URL_DEL_REPOSITORIO>` con la URL del repositorio donde se encuentra alojado el proyecto.
+
+### 2. Configura la Base de Datos
+-  a. Asegúrate de que PostgreSQL esté instalado y en ejecución.
+-  b. Crea una nueva base de datos para la aplicación, utilizando el cliente de PostgreSQL:
+```bash
+  CREATE DATABASE literalura;
+```
+-  c. Actualiza las credenciales de acceso en el archivo de configuración application.properties o application.yml del proyecto:
+```bash
+  spring.datasource.url=jdbc:postgresql://localhost:5432/literalura
+  spring.datasource.username=<TU_USUARIO>
+  spring.datasource.password=<TU_CONTRASEÑA>
+```
+Reemplaza `<TU_USUARIO>` y `<TU_CONTRASEÑA>` con las credenciales de tu base de datos.
+
+### 3. Instala las Dependencias
+-  a. Abre el proyecto en tu IDE favorito (IntelliJ IDEA, Eclipse, etc.).
+-  b. Asegúrate de que Maven o Gradle esté configurado correctamente.
+-  c. Ejecuta el comando para instalar las dependencias del proyecto:
+```bash
+  ./mvnw install
+```
+o, si usas Gradle:
+```bash
+  ./gradlew build
+```
+
+### 4. Ejecuta la Aplicación
+-  a. Inicia la aplicación utilizando el comando:
+
+```bash
+  ./mvnw spring-boot:run
+```
+o, si usas Gradle:
+```bash
+  ./gradlew bootRun
+```
+-  b. La aplicación estará disponible en la consola para interacción textual.
+
+### 5. Opcional: Configura el Cliente SQL
+   Si deseas consultar directamente la base de datos:
+
+-  a. Conéctate a la base de datos `literalura` utilizando una herramienta como DBeaver o pgAdmin.
+-  b. Explora las tablas generadas automáticamente por la aplicación para verificar el almacenamiento de datos.
+
+¡Con estos pasos, Literalura estará lista para su uso!
+
+## Uso
+
+Una vez instalada y ejecutada la aplicación, puedes interactuar con **Literalura** a través de la consola. A continuación, se describen las opciones disponibles y cómo utilizarlas:
+```bash
+=======================================
+ 📚 Bienvenido al sistema de consulta: 
+=======================================
+Seleccione una opción del menú:
+---------------------------------------
+1️⃣ Buscar libros por título o autor
+2️⃣ Listar todos los autores buscados
+3️⃣ Listar todos los libros buscados
+4️⃣ Filtrar libros buscados por idioma
+5️⃣ Listar autores vivos en un año deternimado
+6️⃣ Salir
+---------------------------------------
+```
+### Opciones de Interacción
+1. **Buscar libros por título o nombre del autor:**
+    - Ingresa un título para buscar libros relacionados en la API de Gutendex. Si el libro no existe en la base de datos local, será agregado automáticamente.
+      - Ejemplo:
+```bash
+Seleccione una opción: 1
+Ingrese el título del libro o el autor: hamlet
+      
+Resultado: 
+📖 Título: Hamlet, Prince of Denmark
+👨‍💼 Autor:
+👤 Nombre: Shakespeare, William
+🗓️ Año de Nacimiento: 1564
+🕊️ Año de Fallecimiento: 1616
+🌍 Idioma:en -
+🔢 Número de Descargas: 11383
+```
+2. **Listar todos los autores guardados:**
+    - Obtén una lista de todos los autores cuyos libros han sido registrados en la base de datos.
+    - Ejemplo:
+```bash
+Seleccione una opción: 2
+
+👨‍💼 Lista de autores buscados:
+👤 Nombre: Stoker, Bram
+🗓️ Año de Nacimiento: 1847
+🕊️ Año de Fallecimiento: 1912
+
+👤 Nombre: Melville, Herman
+🗓️ Año de Nacimiento: 1819
+🕊️ Año de Fallecimiento: 1891
+
+👤 Nombre: Cervantes Saavedra, Miguel de
+🗓️ Año de Nacimiento: 1547
+🕊️ Año de Fallecimiento: 1616
+ ```
+3. **Listar todos los libros guardados:**
+    - Consulta todos los libros que han sido buscados previamente y almacenados en la base de datos.
+    - Ejemplo:
+      ```
+      Libros en la base de datos:
+      - Hamlet (William Shakespeare)
+      - Pride and Prejudice (Jane Austen)
+      ```
+
+4. **Listar todos los autores guardados:**
+    - Obtén una lista de todos los autores cuyos libros han sido registrados en la base de datos.
+    - Ejemplo:
+      ```
+      Autores en la base de datos:
+      - William Shakespeare
+      - Jane Austen
+      ```
+
+5. **Listar libros por idioma:**
+    - Filtra los libros guardados según el idioma en el que se encuentran.
+    - Ejemplo:
+      ```
+      Por favor, ingresa el idioma (código ISO 639-1): en
+      Libros en inglés:
+      - Hamlet (William Shakespeare)
+      ```
+
+6. **Listar autores vivos en un año específico:**
+    - Ingresa un año para obtener los autores que estaban vivos en esa fecha.
+    - Ejemplo:
+      ```
+      Por favor, ingresa un año: 1850
+      Autores vivos en 1850:
+      - Charles Dickens
+      - Mark Twain
+      ```
+
+### Navegación y Entrada
+- Sigue las instrucciones que aparecen en pantalla para seleccionar una opción.
+- En caso de ingresar una entrada no válida, se te pedirá que intentes nuevamente.
+
+### Notas Adicionales
+- Los resultados de las búsquedas se guardan automáticamente en la base de datos para futuras consultas.
+- Si un libro o autor ya existe en la base de datos, la aplicación evita duplicados y muestra la información desde el almacenamiento local.
+
+¡Explora las opciones y disfruta de tu catálogo literario personalizado con **Literalura**!
